@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Agregar las aplicaciones al proyecto
     'usuarios',
     'tareas',
 ]
@@ -56,6 +57,7 @@ ROOT_URLCONF = 'organizador_tareas.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        # Agregar la ruta dentro del arreglo
         'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -118,6 +120,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+# Establecer la ruta de los directorios estáticos
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
