@@ -120,9 +120,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-# Establecer la ruta de los directorios estáticos
+STATIC_ROOT = BASE_DIR / 'static'
+# Establecer la ruta de los directorios estáticos de cada app
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',
+    'organizador_tareas/static',
 ]
 
 # Default primary key field type

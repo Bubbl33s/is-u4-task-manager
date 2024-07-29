@@ -4,5 +4,69 @@ Organizador de tareas
 {% endblock title %}
 
 {% block content %}
-<h1>Inicio</h1>
+<main>
+  <h1>Inicio</h1>
+
+  <!-- Inicio de sesión -->
+  <h3>Iniciar sesión</h3>
+  <form action="/iniciar_sesion/" method="POST">
+    {% csrf_token %}
+  
+    <label for="usuario_i">Usuario</label>
+    <input
+      type="text"
+      name="usuario"
+      maxlength="25"
+      autocomplete="username"
+      required
+      id="usuario_i"
+    />
+
+    <label for="contra_i">Contraseña</label>
+    <input
+      type="password"
+      name="contra"
+      required
+      id="contra_i"
+    />
+  
+    <button>Iniciar sesión</button>
+  </form>
+
+  <hr />
+
+  <!-- Registro -->
+  <h3>Registrarse</h3>
+  <form action="/registrar/" method="POST">
+    {% csrf_token %}
+
+    <label for="usuario">Usuario</label>
+    <input
+      type="text"
+      name="usuario"
+      maxlength="25"
+      autocomplete="username"
+      required
+      id="usuario"
+    />
+
+    <label for="contra1">Contraseña</label>
+    <input
+      type="password"
+      name="contra1"
+      required
+      id="contra1"
+    />
+
+    <label for="contra2">Confirmar contraseña</label>
+    <input
+      type="password"
+      name="contra2"
+      required
+      id="contra2"
+    />
+
+    <button>Registrarse</button>
+  </form>
+</main>
 {% endblock content %}
