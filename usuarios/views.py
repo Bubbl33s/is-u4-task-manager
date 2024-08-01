@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.db import IntegrityError
 
 
 def inicio(request):
+    logout(request)
+
     return render(request, 'inicio.html')
 
 
@@ -45,3 +47,9 @@ def iniciar_sesion(request):
         login(request, user)
 
         return redirect('tareas')
+
+
+def cerrar_sesion(request):
+    logout(request)
+
+    return redirect('inicio')
