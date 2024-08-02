@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Crear Tarea{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2>Crear nueva tarea</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="titulo">Título</label>
+      <input type="text" class="form-control" id="titulo" name="titulo" required>
+    </div>
+
+    <div class="form-group">
+      <label for="descripcion">Descripción</label>
+      <textarea class="form-control" id="descripcion" name="descripcion"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="es_importante">¿Es Importante?</label>
+      <input type="checkbox" class="form-check-input" id="es_importante" name="es_importante">
+    </div>
+
+    <div class="form-group">
+      <label for="img">Imagen</label>
+      <input type="file" class="form-control-file" id="img" name="img">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Crear Tarea</button>
+    <a class="btn btn-danger" href="{% url "tareas" %}">Cancelar</a>
+  </form>
+</div>
+{% endblock %}
