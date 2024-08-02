@@ -5,12 +5,14 @@ from django.db import IntegrityError
 
 
 def inicio(request):
+    # Se cierra la sesión para que no se muestre la navbar
     logout(request)
 
     return render(request, 'inicio.html')
 
 
 def registrar(request):
+    # Verifica que ambas contraseñas del formulario sean la misma
     if request.POST['contra1'] == request.POST['contra2']:
         try:
             user = User.objects.create_user(
@@ -23,26 +25,31 @@ def registrar(request):
             return redirect('tareas')
 
         except IntegrityError:
+            # Maneja el error de usuario duplicado
             return render(request, 'incio.html', {
                 'error': 'Usuario ya existente'
             })
 
+    # Si las contraseñas no coinciden, regresa al inicio
     return render(request, 'inicio.html', {
         'error': 'Las contraseñas no coinciden'
     })
 
 
 def iniciar_sesion(request):
+    # Verifica las credenciales ingresadas
     user = authenticate(
         request,
         username=request.POST['usuario'],
         password=request.POST['contra'],
     )
 
+    # Si no se encontró un usuario no se inicia sesión
     if user is None:
         return render(request, 'inicio.html', {
             'error': 'Credenciales incorrectas'
         })
+    # Si las credenciales son correctas, se redirije a la página de tareas
     else:
         login(request, user)
 
