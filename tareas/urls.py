@@ -9,4 +9,6 @@ urlpatterns = [
          views.actualizar_tarea, name='actualizar_tarea'),
     path('eliminar_tarea/<int:tarea_id>',
          views.eliminar_tarea, name='eliminar_tarea'),
+    path('completar_tarea/<int:tarea_id>',
+         views.completar_tarea, name='completar_tarea'),
 ]

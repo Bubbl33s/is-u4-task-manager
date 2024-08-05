@@ -10,8 +10,12 @@ Tareas
 {% block content %}
 <main>
   {% for tarea in tareas %}
-  <div class='tarea-container'>
-    <a href="{% url "detalle_tarea" tarea.id %}" class='tarea-titulo'>{{ tarea.titulo }} 🡕</a>
+  <div class="tarea-container {% if tarea.es_importante %}tarea-importante{% endif %}">
+    <div class="tarea-header d-flex justify-content-between">
+      <a href="{% url "detalle_tarea" tarea.id %}" class='tarea-titulo'>
+        {% if tarea.fecha_completada %}✓{% endif %} {{ tarea.titulo }} 🡕
+      </a>
+    </div>
     <hr />
     <div class="tarea-contenido">
       <p>{{ tarea.descripcion }}</p>

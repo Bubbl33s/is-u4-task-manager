@@ -7,6 +7,7 @@
   <!-- Agregamos un título personalizado a cada template -->
   <title>{% block title %}{% endblock title %}</title>
   <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   {% block style %}{% endblock style %}
 </head>
 <body>
@@ -19,6 +20,33 @@
   {% block content %}
   {% endblock content %}
   <script src="{% static "js/bootstrap.bundle.min.js" %}"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  
+  {% if messages %}
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+      {% for message in messages %}
+        Toastify({
+          text: "{{ message }}",
+          duration: 3000,
+          destination: "https://github.com/apvarun/toastify-js",
+          newWindow: true,
+          close: true,
+          gravity: "bottom", // `top` or `bottom`
+          position: "right", // `left`, `center` or `right`
+          stopOnFocus: true, // Prevents dismissing of toast on hover
+          style: {
+            background: "{{ message.tags }}" =='success' ? 'linear-gradient(to right, #00b09b, #96c93d)' : "{{ message.tags }}" == 'error' ? 'linear-gradient(to right, rgb(162, 2, 63), rgb(231, 62, 68))' : 'blue',
+          },
+          onClick: function(){} // Callback after click
+        }).showToast();
+
+      {% endfor %}
+    });
+  </script>
+  {% endif %}
+
   {% block script %}{% endblock script %}
+
 </body>
 </html>

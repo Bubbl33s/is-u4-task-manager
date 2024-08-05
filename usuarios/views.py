@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 def inicio(request):
@@ -47,12 +48,13 @@ def iniciar_sesion(request):
 
     # Si no se encontró un usuario no se inicia sesión
     if user is None:
-        return render(request, 'inicio.html', {
-            'error': 'Credenciales incorrectas'
-        })
+        messages.error(request, 'Credenciales incorrectas')
+
+        return render(request, 'inicio.html')
     # Si las credenciales son correctas, se redirije a la página de tareas
     else:
         login(request, user)
+        messages.success(request, f"Bienvend@ {user.username}")
 
         return redirect('tareas')
 

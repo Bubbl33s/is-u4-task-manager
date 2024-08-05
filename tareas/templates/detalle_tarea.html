@@ -5,6 +5,14 @@
 {% block content %}
 <div class="container">
   <h2>Detalle Tarea</h2>
+  
+  {% if not tarea.fecha_completada %}
+  <form action="{% url "completar_tarea" tarea.id %}" method="post">
+    {% csrf_token %}
+    <button type="submit" class='btn btn-success'>Marcar como completada</button>
+  </form>
+  {% endif %}
+
   <form action="{% url "actualizar_tarea" tarea.id %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form-group">

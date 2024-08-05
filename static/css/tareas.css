@@ -10,11 +10,38 @@ main {
   width: 600px;
 }
 
+.tarea-importante {
+  border: 1px solid orangered;
+}
+
+.tarea-titulo {
+  font-size: 1.6rem;
+  text-decoration: none;
+  font-weight: 500;
+  color: black;
+}
+
+.tarea-titulo:hover {
+  cursor: pointer;
+  color: gray;
+}
+
 .tarea-container hr {
   margin: 0.5rem 0;
 }
 
-.tarea-img {
-  display: block;
+.tarea-contenido {
+  display: flex;
+}
+
+.tarea-contenido p {
+  flex: 1;
+}
+
+.tarea-img-container {
+  width: 100px;
+}
+
+.tarea-img-container img {
   height: 100px;
 }

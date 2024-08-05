@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 from .models import Tarea
 
 
@@ -84,5 +85,16 @@ def eliminar_tarea(request, tarea_id):
 
     if request.method == 'POST':
         tarea.delete()
+
+        return redirect('tareas')
+
+
+@login_required
+def completar_tarea(request, tarea_id):
+    tarea = get_object_or_404(Tarea, pk=tarea_id, usuario=request.user)
+
+    if request.method == 'POST':
+        tarea.fecha_completada = timezone.now()
+        tarea.save()
 
         return redirect('tareas')
