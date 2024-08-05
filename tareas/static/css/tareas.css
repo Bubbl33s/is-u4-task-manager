@@ -1,0 +1,43 @@
+main {
+  padding: 20px;
+}
+
+.tarea-container {
+  border: 1px solid gray;
+  border-radius: 10px;
+  margin: 20px auto;
+  padding: 15px 20px;
+  width: 600px;
+}
+
+.tarea-titulo {
+  font-size: 1.6rem;
+  text-decoration: none;
+  font-weight: 500;
+  color: black;
+}
+
+.tarea-titulo:hover {
+  cursor: pointer;
+  color: gray;
+}
+
+.tarea-container hr {
+  margin: 0.5rem 0;
+}
+
+.tarea-contenido {
+  display: flex;
+}
+
+.tarea-contenido p {
+  flex: 1;
+}
+
+.tarea-img-container {
+  width: 100px;
+}
+
+.tarea-img-container img {
+  height: 100px;
+}

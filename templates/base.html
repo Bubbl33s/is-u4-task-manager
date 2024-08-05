@@ -7,6 +7,7 @@
   <!-- Agregamos un título personalizado a cada template -->
   <title>{% block title %}{% endblock title %}</title>
   <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
+  {% block style %}{% endblock style %}
 </head>
 <body>
   <!-- Mostramos el navbar solo si el usuario está autenticado -->
@@ -18,5 +19,6 @@
   {% block content %}
   {% endblock content %}
   <script src="{% static "js/bootstrap.bundle.min.js" %}"></script>
+  {% block script %}{% endblock script %}
 </body>
 </html>

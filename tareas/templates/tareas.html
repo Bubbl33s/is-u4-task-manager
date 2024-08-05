@@ -1,9 +1,30 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}
 Tareas
 {% endblock title %}
+{% block style %}
+<link rel="stylesheet" href="{% static "css/tareas.css" %}" />
+{% endblock style %}
 
 {% block content %}
-<h1>Tareas</h1>
-<p>Bienvenid@ {{ user.username }}</p>
+<main>
+  {% for tarea in tareas %}
+  <div class='tarea-container'>
+    <a href="{% url "detalle_tarea" tarea.id %}" class='tarea-titulo'>{{ tarea.titulo }} 🡕</a>
+    <hr />
+    <div class="tarea-contenido">
+      <p>{{ tarea.descripcion }}</p>
+    <div class='tarea-img-container'>
+      {% if tarea.img %}
+      <img src="{{ tarea.img.url }}" alt="{{ tarea.title }}" />
+      {% else %}
+      <img src="{% static "img/tarea_default.png" %}" alt="{{ tarea.title }}" />
+      {% endif %}
+    </div>
+    </div>
+    <!-- <p>{{ tarea.fecha_completada | date:'M j Y:i' }}</p> -->
+  </div>
+  {% endfor %}
+</main>
 {% endblock content %}

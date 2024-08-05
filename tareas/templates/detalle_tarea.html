@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Detalle Tarea{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2>Detalle Tarea</h2>
+  <form action="{% url "actualizar_tarea" tarea.id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="titulo">Título</label>
+      <input type="text" class="form-control" id="titulo" name="titulo" required value="{{ tarea.titulo }}">
+    </div>
+
+    <div class="form-group">
+      <label for="descripcion">Descripción</label>
+      <textarea class="form-control" id="descripcion" name="descripcion">{{ tarea.descripcion }}</textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="es_importante">¿Es Importante?</label>
+      <input type="checkbox" class="form-check-input" id="es_importante" name="es_importante" {% if tarea.es_importante %}checked{% endif %}>
+    </div>
+
+    <div class="form-group">
+      <div>
+        <label for="img">Imagen</label>
+        {% if tarea.img %}
+        <p>Imagen actual:</p>
+        <img src="{{ tarea.img.url }}" alt="Imagen de la tarea" style="max-width: 200px; max-height: 200px;">
+        {% endif %}
+      </div>
+      <label for="img">Nueva imagen</label>
+      <input type="file" class="form-control-file" id="img" name="img" accept="image/*" >
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Actualizar Tarea</button>
+  </form>
+  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-eliminar">
+    Eliminar Tarea
+  </button>
+  <a class="btn btn-warning" href="{% url "tareas" %}">Cancelar</a>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal-eliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmar eliminación</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Segur@ que deseas eliminar esta tarea?
+      </div>
+      <form action="{% url "eliminar_tarea" tarea.id %}" method='post' class="modal-footer">
+        {% csrf_token %}
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        <button type="submit" class="btn btn-danger">Sí</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

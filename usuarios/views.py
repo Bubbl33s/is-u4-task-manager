@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 from django.db import IntegrityError
+from django.contrib.auth.decorators import login_required
 
 
 def inicio(request):
@@ -56,6 +57,7 @@ def iniciar_sesion(request):
         return redirect('tareas')
 
 
+@login_required
 def cerrar_sesion(request):
     logout(request)
 

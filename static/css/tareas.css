@@ -1,0 +1,20 @@
+main {
+  padding: 20px;
+}
+
+.tarea-container {
+  border: 1px solid gray;
+  border-radius: 10px;
+  margin: 20px auto;
+  padding: 15px 20px;
+  width: 600px;
+}
+
+.tarea-container hr {
+  margin: 0.5rem 0;
+}
+
+.tarea-img {
+  display: block;
+  height: 100px;
+}
