@@ -6,13 +6,14 @@
 <div class="container">
   <h2>Detalle Tarea</h2>
   
+  {% comment %} Solo se muestra en caso de que la tarea aún no se haya completado {% endcomment %}
   {% if not tarea.fecha_completada %}
   <form action="{% url "completar_tarea" tarea.id %}" method="post">
     {% csrf_token %}
     <button type="submit" class='btn btn-success'>Marcar como completada</button>
   </form>
   {% endif %}
-
+  {% comment %} No olvidar el enctype {% endcomment %}
   <form action="{% url "actualizar_tarea" tarea.id %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form-group">
@@ -35,6 +36,7 @@
         <label for="img">Imagen</label>
         {% if tarea.img %}
         <p>Imagen actual:</p>
+        {% comment %} Solo se agregó un estilo en línea por fines prácticos, las estudiantes sí deberían agregar su propio archivo CSS {% endcomment %}
         <img src="{{ tarea.img.url }}" alt="Imagen de la tarea" style="max-width: 200px; max-height: 200px;">
         {% endif %}
       </div>
@@ -44,6 +46,7 @@
     
     <button type="submit" class="btn btn-primary">Actualizar Tarea</button>
   </form>
+  {% comment %} Botón para el modal de Bootstrap {% endcomment %}
   <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-eliminar">
     Eliminar Tarea
   </button>
@@ -61,6 +64,7 @@
       <div class="modal-body">
         ¿Segur@ que deseas eliminar esta tarea?
       </div>
+      {% comment %} Formulario para la eliminación {% endcomment %}
       <form action="{% url "eliminar_tarea" tarea.id %}" method='post' class="modal-footer">
         {% csrf_token %}
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>

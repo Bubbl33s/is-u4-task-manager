@@ -1,4 +1,5 @@
 {% load static %}
+{% comment %} Agregamos la estructura básica solo aquí {% endcomment %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +9,7 @@
   <title>{% block title %}{% endblock title %}</title>
   <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  {% comment %} Un bloque de estilo para poder agregar archivos css en cada template que herede {% endcomment %}
   {% block style %}{% endblock style %}
 </head>
 <body>
@@ -19,14 +21,17 @@
   <!-- Contenido personalizado para cada template que herede -->
   {% block content %}
   {% endblock content %}
+
   <script src="{% static "js/bootstrap.bundle.min.js" %}"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   
   {% if messages %}
   <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
+      // Solo se muestran los mensajes en caso de que los haya
       {% for message in messages %}
         Toastify({
+          // Debe ir entre comillas ya que si no lo toma como si no fuera una string
           text: "{{ message }}",
           duration: 3000,
           destination: "https://github.com/apvarun/toastify-js",
@@ -36,6 +41,7 @@
           position: "right", // `left`, `center` or `right`
           stopOnFocus: true, // Prevents dismissing of toast on hover
           style: {
+            // Operador ternario
             background: "{{ message.tags }}" =='success' ? 'linear-gradient(to right, #00b09b, #96c93d)' : "{{ message.tags }}" == 'error' ? 'linear-gradient(to right, rgb(162, 2, 63), rgb(231, 62, 68))' : 'blue',
           },
           onClick: function(){} // Callback after click
@@ -46,7 +52,7 @@
   </script>
   {% endif %}
 
+  {% comment %} Un bloque de script para poder agregar archivos js en cada template que herede {% endcomment %}
   {% block script %}{% endblock script %}
-
 </body>
 </html>

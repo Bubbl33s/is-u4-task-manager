@@ -5,6 +5,7 @@
 {% block content %}
 <div class="container">
   <h2>Crear nueva tarea</h2>
+  <!-- Es muy importante agregar el atributo enctype para los archivos multimedia -->
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form-group">
@@ -24,6 +25,7 @@
 
     <div class="form-group">
       <label for="img">Imagen</label>
+      <!-- Atributo accept para que solo admita formatos de imagen -->
       <input type="file" class="form-control-file" id="img" name="img" accept='image/*'>
     </div>
     

@@ -8,3 +8,4 @@ urlpatterns = [
     path('', include('usuarios.urls')),
     path('tareas/', include('tareas.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# Esta última línea se concatena para el correcto funcionamiento de los archivos multimedia

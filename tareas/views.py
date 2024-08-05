@@ -6,8 +6,10 @@ from .models import Tarea
 
 @login_required
 def tareas(request):
+    # Obtener todas las tareas
     tareas = Tarea.objects.all().filter(usuario=request.user)
 
+    # Pasar las tareas por el contexto
     return render(request, 'tareas.html', {
         'tareas': tareas
     })
@@ -47,6 +49,7 @@ def crear_tarea(request):
 
 @login_required
 def detalle_tarea(request, tarea_id):
+    # Obtener la tarea específica
     tarea = get_object_or_404(Tarea, pk=tarea_id)
 
     return render(request, 'detalle_tarea.html', {
@@ -94,6 +97,7 @@ def completar_tarea(request, tarea_id):
     tarea = get_object_or_404(Tarea, pk=tarea_id, usuario=request.user)
 
     if request.method == 'POST':
+        # La tarea se marca completada con la fecha y hora actual
         tarea.fecha_completada = timezone.now()
         tarea.save()
 

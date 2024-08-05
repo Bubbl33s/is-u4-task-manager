@@ -130,6 +130,7 @@ STATICFILES_DIRS = [
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+# Ruta para redireccionar las vistas protegidas
 LOGIN_URL = '/'
 
 # Default primary key field type
